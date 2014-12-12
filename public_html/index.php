@@ -5,11 +5,11 @@ define('TEMPLATE_PATH', 	__DIR__ .'/../templates');
 
 // Slim
 $app = new \Slim\Slim([
-	'templates.path'	=>	TEMPLATE_PATH,
-	'debug'				=>	true,
-	'log.enabled'		=>	false,
-	'log.level'			=>	\Slim\Log::DEBUG,
-	'mode'				=>	'production',
+	'templates.path' => TEMPLATE_PATH,
+	'debug' => true,
+	'log.enabled' => false,
+	'log.level' => \Slim\Log::DEBUG,
+	'mode' => 'production',
 ]);
 
 // Singleton for the database
@@ -34,11 +34,11 @@ $app->get('/article', $article = function($id = 1) use ($db, $app) {
 
 	// Information about the paginator
 	$page_info		=	[
-		'all_pages' 	=>	$pages->rowCount(),
-		'current_page'	=> 	$id,
-		'max_pages'		=>	(int) floor($pages->rowCount()/15),	
-		'next_page'		=>	$id+1,
-		'prev_page'		=> 	$id-1,
+		'all_pages' => $pages->rowCount(),
+		'current_page' => $id,
+		'max_pages' => (int) floor($pages->rowCount()/15),	
+		'next_page' => $id+1,
+		'prev_page' => $id-1,
 	];
 
 	$articles 		= 	$db->prepare("SELECT *, COUNT( decorrespondent_id ) as count FROM posts GROUP BY decorrespondent_id ORDER BY decorrespondent_id desc LIMIT 15 OFFSET :offset");
@@ -57,7 +57,7 @@ $app->get('/article/:id', function ($id) use ($db, $app) {
 	$links->bindValue(':id', (int) $id, PDO::PARAM_INT);
 	$links->execute();
 	
-    $app->render('articles/article.php', ['links' => $links], 200);
+	$app->render('articles/article.php', ['links' => $links], 200);
 })->conditions(['id' => '[0-9]+']);
 
 // 404!
