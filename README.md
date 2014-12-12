@@ -9,7 +9,11 @@
 ### Installatie
 #### Installatie met de composer
 ```sh
-php composer.phar require nickurt/lolspondent:dev-master
+git clone https://github.com/nickurt/lolspondent.git
+cd lolspondent
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
+php -S 0.0.0.0:8888 -t public_html public_html/index.php
 ```
 ### Requirements
 
