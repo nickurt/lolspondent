@@ -1,0 +1,9 @@
+{
+    "name": "nickurt/lolspondent",
+    "description": "De Lol Spondent - De Correspondent Artikeldatabase",
+    "license": "MIT",
+    "require": {
+        "slim/slim": "dev-master",
+        "ricardoper/twitteroauth": "dev-master"
+    }
+}
